@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => {
+const Header = ({onOpenAddModal}) => {
   return (
     <div className="table-title">
       <div className="row">
@@ -10,13 +10,10 @@ const Header = () => {
           </h2>
         </div>
         <div className="col-sm-6">
-          <a
-            href="#addEmployeeModal"
-            className="btn btn-success"
-            data-toggle="modal"
-          >
-            <i className="material-icons">&#xE147;</i> <span>Add New Employee</span>
-          </a>
+          <button className="btn btn-success" onClick={onOpenAddModal}>
+            <i className="material-icons">&#xE147;</i>{" "}
+            <span>Add New Employee</span>
+          </button>
           <a
             href="#deleteEmployeeModal"
             className="btn btn-danger"

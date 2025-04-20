@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./styles.css";
 import Header from "./components/Header";
 import EmployeeList from "./components/EmployeeList";
+import AddEmployeeModal from "./components/AddEmployeeModal";
 
 function App() {
   const [employees, setEmployees] = useState([
@@ -14,13 +15,18 @@ function App() {
       phone: "(171) 555-2222"
     }
   ])
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+
   return (
+    <>
     <div className="container">
       <div className="table-wrapper">
-        <Header />
+        <Header onOpenAddModal={() => setIsAddModalOpen(true)}/>
         <EmployeeList employees={employees}/>
       </div>
     </div>
+    <AddEmployeeModal isOpen={isAddModalOpen} onCloseAddModal={() => setIsAddModalOpen(false)}/>
+    </>
   );
 }
 createRoot(document.getElementById("root")).render(
