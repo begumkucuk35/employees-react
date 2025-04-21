@@ -16,7 +16,14 @@ function App() {
     }
   ])
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
-
+  function onFormSubmit(formData){
+    setEmployees(prev => [
+      ...prev,{
+        ...formData,
+        id: Math.max(...prev.map(emp => emp.id), 0) + 1
+      }
+    ])
+  }
   return (
     <>
     <div className="container">
@@ -25,7 +32,7 @@ function App() {
         <EmployeeList employees={employees}/>
       </div>
     </div>
-    <AddEmployeeModal isOpen={isAddModalOpen} onCloseAddModal={() => setIsAddModalOpen(false)}/>
+    <AddEmployeeModal isOpen={isAddModalOpen} onCloseAddModal={() => setIsAddModalOpen(false)} onFormSubmit={onFormSubmit}/>
     </>
   );
 }
