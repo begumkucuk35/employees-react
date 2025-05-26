@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const AddEmployeeModal = ({ isOpen, onCloseAddModal, onFormSubmit }) => {
+const EditEmployeeModal = ({
+  isOpen,
+  employee,
+  onCloseEditModal,
+  onEditFormSubmit,
+}) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -9,6 +14,12 @@ const AddEmployeeModal = ({ isOpen, onCloseAddModal, onFormSubmit }) => {
     gender: "",
     department: "",
   });
+
+  useEffect(() => {
+    if (employee) {
+      setFormData(employee);
+    }
+  }, [employee]);
   function onFormDataChange(e) {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -18,8 +29,8 @@ const AddEmployeeModal = ({ isOpen, onCloseAddModal, onFormSubmit }) => {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    onFormSubmit(formData);
-    onCloseAddModal();
+    onEditFormSubmit(formData);
+    onCloseEditModal();
     setFormData({
       name: "",
       email: "",
@@ -30,7 +41,7 @@ const AddEmployeeModal = ({ isOpen, onCloseAddModal, onFormSubmit }) => {
     });
   }
   function handleCancel() {
-    onCloseAddModal();
+    onCloseEditModal();
     setFormData({
       name: "",
       email: "",
@@ -43,16 +54,16 @@ const AddEmployeeModal = ({ isOpen, onCloseAddModal, onFormSubmit }) => {
   if (!isOpen) return null;
   return (
     <>
-      <div id="addEmployeeModal" className="modal fade show">
+      <div id="editEmployeeModal" className="modal fade show">
         <div className="modal-dialog">
           <div className="modal-content">
             <form onSubmit={handleSubmit}>
               <div className="modal-header">
-                <h4 className="modal-title">Add Employee</h4>
+                <h4 className="modal-title">Edit Employee</h4>
                 <button
                   type="button"
                   className="close"
-                  onClick={handleCancel}
+                  onClick={onCloseEditModal}
                 >
                   &times;
                 </button>
@@ -142,11 +153,15 @@ const AddEmployeeModal = ({ isOpen, onCloseAddModal, onFormSubmit }) => {
                 </div>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-default" onClick={handleCancel}>
+                <button
+                  type="button"
+                  className="btn btn-default"
+                  onClick={handleCancel}
+                >
                   Cancel
                 </button>
                 <button type="submit" className="btn btn-success">
-                  Add
+                  Save Changes
                 </button>
               </div>
             </form>
@@ -158,4 +173,4 @@ const AddEmployeeModal = ({ isOpen, onCloseAddModal, onFormSubmit }) => {
   );
 };
 
-export default AddEmployeeModal;
+export default EditEmployeeModal;

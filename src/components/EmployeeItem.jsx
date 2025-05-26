@@ -1,6 +1,9 @@
 import React from 'react'
 
-export const EmployeeItem = ({employee}) => {
+export const EmployeeItem = ({employee, onEditClick}) => {
+  function handleEditClick(){
+    onEditClick(employee)
+  }
   return (
     <tr>
           <td>
@@ -21,8 +24,8 @@ export const EmployeeItem = ({employee}) => {
           <td>{employee.gender}</td>
           <td>{employee.department}</td>
           <td>
-            <a href="#editEmployeeModal" className="edit" data-toggle="modal">
-              <i className="material-icons" data-toggle="tooltip" title="Edit">
+            <a onClick={handleEditClick} className="edit">
+              <i className="material-icons" title="Edit">
                 &#xE254;
               </i>
             </a>

@@ -1,7 +1,7 @@
 import React from "react";
 import { EmployeeItem } from "./EmployeeItem";
 
-const EmployeeList = ({employees}) => {
+const EmployeeList = ({employees, onEditClick}) => {
   return (
     <table className="table table-striped table-hover">
       <thead>
@@ -23,7 +23,7 @@ const EmployeeList = ({employees}) => {
       </thead>
       <tbody>
         {employees.map((employee) => (
-            <EmployeeItem employee={employee} key={employee.id}/>
+            <EmployeeItem employee={employee} key={employee.id} onEditClick={onEditClick}/>
         ))}
       </tbody>
     </table>
