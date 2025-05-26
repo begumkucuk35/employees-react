@@ -18,6 +18,8 @@ export const EmployeeItem = ({employee}) => {
           <td>{employee.email}</td>
           <td>{employee.address}</td>
           <td>{employee.phone}</td>
+          <td>{employee.gender}</td>
+          <td>{employee.department}</td>
           <td>
             <a href="#editEmployeeModal" className="edit" data-toggle="modal">
               <i className="material-icons" data-toggle="tooltip" title="Edit">

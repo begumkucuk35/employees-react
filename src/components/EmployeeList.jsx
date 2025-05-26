@@ -16,6 +16,8 @@ const EmployeeList = ({employees}) => {
           <th>Email</th>
           <th>Address</th>
           <th>Phone</th>
+          <th>Gender</th>
+          <th>Department</th>
           <th>Actions</th>
         </tr>
       </thead>
