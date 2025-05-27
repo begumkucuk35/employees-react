@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = ({onOpenAddModal}) => {
+const Header = ({onOpenAddModal, onHeaderDelete}) => {
   return (
     <div className="table-title">
       <div className="row">
@@ -14,13 +14,12 @@ const Header = ({onOpenAddModal}) => {
             <i className="material-icons">&#xE147;</i>{" "}
             <span>Add New Employee</span>
           </button>
-          <a
-            href="#deleteEmployeeModal"
+          <button
             className="btn btn-danger"
-            data-toggle="modal"
+            onClick={onHeaderDelete}
           >
             <i className="material-icons">&#xE15C;</i> <span>Delete</span>
-          </a>
+          </button>
         </div>
       </div>
     </div>

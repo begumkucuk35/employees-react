@@ -1,8 +1,11 @@
 import React from 'react'
 
-export const EmployeeItem = ({employee, onEditClick}) => {
+export const EmployeeItem = ({employee, onEditClick, onDeleteClick, isSelected, onToggleSelectedEmployee}) => {
   function handleEditClick(){
     onEditClick(employee)
+  }
+  function handleDeleteClick(){
+    onDeleteClick(employee)
   }
   return (
     <tr>
@@ -11,8 +14,8 @@ export const EmployeeItem = ({employee, onEditClick}) => {
               <input
                 type="checkbox"
                 id="checkbox1"
-                name="options[]"
-                value="1"
+                checked={isSelected}
+                onChange={() => onToggleSelectedEmployee(employee.id)}
               />
               <label htmlFor="checkbox1"></label>
             </span>
@@ -29,8 +32,8 @@ export const EmployeeItem = ({employee, onEditClick}) => {
                 &#xE254;
               </i>
             </a>
-            <a href="#deleteEmployeeModal" className="delete" data-toggle="modal">
-              <i className="material-icons" data-toggle="tooltip" title="Delete">
+            <a onClick={handleDeleteClick} className="delete">
+              <i className="material-icons" title="Delete">
                 &#xE872;
               </i>
             </a>
