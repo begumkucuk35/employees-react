@@ -60,6 +60,7 @@ function App() {
       setEmployees((prevEmployees) =>
         prevEmployees.filter((emp) => emp.id !== employee.id)
       );
+      setSelectedEmployees([]);
     }
   }
   function headerDelete() {
