@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles.css";
 import Header from "./components/Header";
 import EmployeeList from "./components/EmployeeList";
@@ -6,31 +6,18 @@ import AddEmployeeModal from "./components/AddEmployeeModal";
 import EditEmployeeModal from "./components/EditEmployeeModal";
 
 function App() {
-  const [employees, setEmployees] = useState([
-    {
-      id: 1,
-      name: "Begüm",
-      email: "try@mail.com",
-      address: "non non nonn",
-      phone: "(171) 555-2222",
-      gender: "Female",
-      department: "hr",
-    },
-    {
-      id: 2,
-      name: "Begüm22",
-      email: "try@mail.com22",
-      address: "non non nonn222",
-      phone: "(171) 555-0000",
-      gender: "Female",
-      department: "development",
-    },
-  ]);
+  const [employees, setEmployees] = useState(() =>{
+    const savedEmployees = localStorage.getItem("employees");
+    return savedEmployees ? JSON.parse(savedEmployees) : [];
+  });
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [selectedEmployees, setSelectedEmployees] = useState([]);
 
+  useEffect(()=>{
+    localStorage.setItem("employees", JSON.stringify(employees))
+  }, [employees])
   function onFormSubmit(formData) {
     setEmployees((prev) => [
       ...prev,
